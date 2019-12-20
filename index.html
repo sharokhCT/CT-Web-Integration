@@ -2,6 +2,13 @@
 	<head>
 		<title>CleverTap Web Integration</title>
 		<link rel="shortcut icon" href="https://d35fo82fjcw0y8.cloudfront.net/2018/03/01014752/favicon.png?v=0">
+		
+		<!-- Material Design -->
+		<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+		<!-- CleverTap -->
 		<script type="text/javascript">
 			 var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
 			// replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
@@ -19,7 +26,26 @@
 		</script>
 	</head>
 
-	<body>
-		<h1>CleverTap Web Integration</h1>
+	<body style="margin: 0px !important;">
+		<header class="mdc-top-app-bar mdc-top-app-bar--short">
+			<div class="mdc-top-app-bar__row">
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+				<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+				<span class="mdc-top-app-bar__title">CleverTap Web Integration</span>
+				</section>
+				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+				<a href="https://clevertap.com" target="_blank"><button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">launch</button></a>
+				</section>
+			</div>
+		</header>
+		<div class="container" style="background-color: #f6f7f9; width: 100%; min-height: 100%; margin-top: 50px;">			
+			<div class="mdc-layout-grid">
+				<div class="mdc-layout-grid__inner">
+					<div class="mdc-layout-grid__cell--span-4">Salaam</div>
+					<div class="mdc-layout-grid__cell--span-4">Bye Bye</div>
+					<div class="mdc-layout-grid__cell--span-4">LOL</div>
+				</div>
+			</div>
+		</div>
 	</body>
 <html>
