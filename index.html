@@ -139,7 +139,7 @@
 						}
 					</script>
 
-					<button type="submit" class="btn btn-info"onClick="pushProfile(this.id)">Push Profile</button>
+					<button type="submit" class="btn btn-info" onClick="pushProfile(this.id)">Push Profile</button>
 					<script type="text/javascript">
 						function pushProfile(clicked_id) {
 							var name = document.getElementById("name").value;
@@ -163,7 +163,18 @@
 						}
 					</script>
 
-					<button type="submit" class="btn btn-secondary">Inbox</button>
+					<button type="submit" class="btn btn-secondary" onClick="optIn(this.id)">Opt-In</button>
+					<script type="text/javascript">
+						function optIn(clicked_id) {
+							clevertap.notifications.push({
+								"titleText":'Would you like to receive Push Notifications?',
+								"bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+								"okButtonText":'Sign me up!',
+								"rejectButtonText":'No thanks',
+								"okButtonColor":'#f28046'
+							});
+						}
+					</script>
 				</form>
 			</div>
 		</div>
