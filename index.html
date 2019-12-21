@@ -3,10 +3,12 @@
 		<title>CleverTap Web Integration</title>
 		<link rel="shortcut icon" href="https://d35fo82fjcw0y8.cloudfront.net/2018/03/01014752/favicon.png?v=0">
 		
-		<!-- Material Design -->
-		<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 		<!-- CleverTap -->
 		<script type="text/javascript">
@@ -24,28 +26,152 @@
 				 s.parentNode.insertBefore(wzrk, s);
 			})();
 		</script>
+
+		<script src="https://kit.fontawesome.com/eb0c139602.js" crossorigin="anonymous"></script>
 	</head>
 
-	<body style="margin: 0px !important;">
-		<header class="mdc-top-app-bar mdc-top-app-bar--short">
-			<div class="mdc-top-app-bar__row">
-				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-				<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
-				<span class="mdc-top-app-bar__title">CleverTap Web Integration</span>
-				</section>
-				<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-				<a href="https://clevertap.com" target="_blank"><button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Bookmark this page">launch</button></a>
-				</section>
-			</div>
-		</header>
-		<div class="container" style="background-color: #f6f7f9; width: 100%; min-height: 100%; margin-top: 50px;">			
-			<div class="mdc-layout-grid">
-				<div class="mdc-layout-grid__inner">
-					<div class="mdc-layout-grid__cell--span-4">Salaam</div>
-					<div class="mdc-layout-grid__cell--span-4">Bye Bye</div>
-					<div class="mdc-layout-grid__cell--span-4">LOL</div>
+	<body style="background-color: #f6f7f9;">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #434761 !important;">
+			<a class="navbar-brand" href="#"><span style="color:white;">Clever</span><span style="color:#ff893c;">Tapper</span></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+					</li>
+				</ul>
+				<div class="my-2 my-lg-0">
+					<a href="https://clevertap.com" target="_blank" style="text-decoration: none; color: white;"><i class="fas fa-external-link-alt"></i></a>
 				</div>
 			</div>
+		</nav>
+		<div class="container" style="margin-top: 25px;">
+			<div class="row">
+				<form style="width: 100%;">
+					<div class="form-group">
+						<label for="eventName">Event Name</label>
+						<input type="text" class="form-control" id="eventName">
+					</div>
+					<div class="form-row">
+					  <div class="form-group col-md-6">
+						<label for="eventPropertyName">Event Property Name</label>
+						<input type="text" class="form-control" id="eventPropertyName">
+					  </div>
+					  <div class="form-group col-md-6">
+						<label for="eventPropertyValue">Event Property Value</label>
+						<input type="text" class="form-control" id="eventPropertyValue">
+					  </div>
+					</div>
+					<button type="submit" class="btn btn-primary" onClick="fireEvent(this.id)">Fire!</button>
+
+					<script type="text/javascript">
+						function fireEvent(clicked_id) {
+							var eventName = document.getElementById("eventName").value;
+							var eventPropertyName = document.getElementById("eventPropertyName").value;
+							var eventPropertyValue = document.getElementById("eventPropertyValue").value;
+
+							var eventProps = {};
+							eventProps[eventPropertyName] = eventPropertyValue;
+							clevertap.event.push(eventName, eventProps);
+						}
+					</script>
+				</form>
+
+				<form style="width: 100%;">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name">
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="identity">Identity</label>
+							<input type="text" class="form-control" id="identity">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" id="email">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="phoneNumber">Phone Number</label>
+							<input type="text" class="form-control" id="phoneNumber">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="customUserPropertyName">Custom User Property Name</label>
+							<input type="text" class="form-control" id="customUserPropertyName">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="customUserPropertyValue">Custom User Property Value</label>
+							<input type="text" class="form-control" id="customUserPropertyValue">
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-primary" onClick="login(this.id)">Login</button>
+					<script type="text/javascript">
+						function login(clicked_id) {
+							var name = document.getElementById("name").value;
+							var identity = document.getElementById("identity").value;
+							var email = document.getElementById("email").value;
+							var phoneNumber = document.getElementById("phoneNumber").value;
+							var customUserPropertyName = document.getElementById("customUserPropertyName").value;
+							var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
+							
+							var userProps = {
+								"Site": {
+									'Name': name,
+									'Email': email,
+									'identity': identity,
+									'phoneNumber': phoneNumber,
+									customUserPropertyName: customUserPropertyValue
+								}
+							};
+							userProps['Site'][customUserPropertyName] = customUserPropertyName;
+				
+							clevertap.onUserLogin(userProps);
+						}
+					</script>
+
+					<button type="submit" class="btn btn-info"onClick="pushProfile(this.id)">Push Profile</button>
+					<script type="text/javascript">
+						function pushProfile(clicked_id) {
+							var name = document.getElementById("name").value;
+							var identity = document.getElementById("identity").value;
+							var email = document.getElementById("email").value;
+							var phoneNumber = document.getElementById("phoneNumber").value;
+							var customUserPropertyName = document.getElementById("customUserPropertyName").value;
+							var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
+
+							var userProps = {
+								"Site": {
+									'Name': name,
+									'Email': email,
+									'identity': identity,
+									'phoneNumber': phoneNumber,
+								}
+							};
+							userProps['Site'][customUserPropertyName] = customUserPropertyValue;
+
+							clevertap.profile.push(userProps);
+						}
+					</script>
+
+					<button type="submit" class="btn btn-secondary">Inbox</button>
+				</form>
+			</div>
 		</div>
+
+		
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	</body>
 <html>
