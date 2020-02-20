@@ -71,10 +71,10 @@
 						<input type="text" class="form-control" id="eventPropertyValue">
 					  </div>
 					</div>
-					<button type="submit" class="btn btn-primary" onClick="fireEvent(this.id)">Fire!</button>
+					<button type="submit" class="btn btn-primary" onClick="fireEvent()">Fire!</button>
 
 					<script type="text/javascript">
-						function fireEvent(clicked_id) {
+						function fireEvent() {
 							var eventName = document.getElementById("eventName").value;
 							var eventPropertyName = document.getElementById("eventPropertyName").value;
 							var eventPropertyValue = document.getElementById("eventPropertyValue").value;
@@ -114,9 +114,9 @@
 						</div>
 					</div>
 
-					<button type="submit" class="btn btn-primary" onClick="login(this.id)">Login</button>
+					<button type="submit" class="btn btn-primary" onClick="login()">Login</button>
 					<script type="text/javascript">
-						function login(clicked_id) {
+						function login() {
 							var name = document.getElementById("name").value;
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
@@ -139,9 +139,9 @@
 						}
 					</script>
 
-					<button type="submit" class="btn btn-info" onClick="pushProfile(this.id)">Push Profile</button>
+					<button type="submit" class="btn btn-info" onClick="pushProfile()">Push Profile</button>
 					<script type="text/javascript">
-						function pushProfile(clicked_id) {
+						function pushProfile() {
 							var name = document.getElementById("name").value;
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
