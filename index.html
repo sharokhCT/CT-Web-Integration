@@ -163,9 +163,9 @@
 						}
 					</script>
 
-					<button type="submit" class="btn btn-secondary" onClick="optIn(this.id);return false;">Opt-In</button>
+					<button type="submit" class="btn btn-secondary" onClick="optIn();return false;">Opt-In</button>
 					<script type="text/javascript">
-						function optIn(clicked_id) {
+						function optIn() {
 							clevertap.notifications.push({
 								"titleText":'Would you like to receive Push Notifications?',
 								"bodyText":'We promise to only send you relevant content and give you updates on your transactions',
