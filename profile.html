@@ -153,7 +153,7 @@
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
 							var phoneNumber = document.getElementById("phoneNumber").value;
-							var photo = document.getElementById("profileImageURL").src;
+							var photo = document.getElementById("profileImageURL").value;
 							
 							var userProps = {
 								"Site": {
@@ -162,7 +162,6 @@
 									'identity': identity,
 									'Phone': phoneNumber,
 									"Photo": photo,
-									customUserPropertyName: customUserPropertyValue
 								}
 							};
 
@@ -181,7 +180,7 @@
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
 							var phoneNumber = document.getElementById("phoneNumber").value;
-							var photo = document.getElementById("profileImageURL").src;
+							var photo = document.getElementById("profileImageURL").value;
 
 							var userProps = {
 								"Site": {
@@ -224,12 +223,19 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<script type="text/javascript">
 			window.onload = function() {
-				document.getElementById("name").value = clevertap.profile.getAttribute("Name");
-				document.getElementById("identity").value = clevertap.profile.getAttribute("identity");
-				document.getElementById("phoneNumber").value = "+" + clevertap.profile.getAttribute("Phone");
-				document.getElementById("email").value = clevertap.profile.getAttribute("Email");
+				if(clevertap.profile.getAttribute("Name") != undefined)
+					document.getElementById("name").value = clevertap.profile.getAttribute("Name");
+
+				if(clevertap.profile.getAttribute("identity") != undefined)
+					document.getElementById("identity").value = clevertap.profile.getAttribute("identity");
+
+				if(clevertap.profile.getAttribute("Phone") != undefined)
+					document.getElementById("phoneNumber").value = "+" + clevertap.profile.getAttribute("Phone");
+
+				if(clevertap.profile.getAttribute("Email") != undefined)
+					document.getElementById("email").value = clevertap.profile.getAttribute("Email");
 				
-				if(clevertap.profile.getAttribute("Photo") != "") {
+				if(clevertap.profile.getAttribute("Photo") != "" && clevertap.profile.getAttribute("Photo") != undefined) {
 					document.getElementById("profileImageURL").value = clevertap.profile.getAttribute("Photo");
 					document.getElementById("profileImage").src = clevertap.profile.getAttribute("Photo");
 				}
