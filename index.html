@@ -28,6 +28,9 @@
 		</script>
 
 		<script src="https://kit.fontawesome.com/eb0c139602.js" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			let i = 0;
+		</script>
 	</head>
 
 	<body style="background-color: #f6f7f9;">
@@ -55,22 +58,69 @@
 			</div>
 		</nav>
 		<div class="container" style="margin-top: 25px">
-			<div class="row" style="padding:14px;">
-				<div class="form-group">
+			<div id="message"></div>
+			<div class="row">
+				<div class="col-md-12 mt-4">
 					<label for="eventName">Event Name</label>
 					<input type="text" class="form-control" id="eventName">
 				</div>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-					<label for="eventPropertyName">Event Property Name</label>
-					<input type="text" class="form-control" id="eventPropertyName">
+			</div>
+				<div id="customEventProps">
+					<div class="row" id="customEventProp0">
+						<div class="col-md-5 mt-4">
+							<label for="eventPropertyName">Event Property Name</label>
+							<input type="text" class="form-control" id="eventPropertyName0">
+						</div>
+						<div class="col-md-6 mt-4">
+							<label for="eventPropertyValue">Event Property Value</label>
+							<input type="text" class="form-control" id="eventPropertyValue0">
+						</div>
+						<div class="col-md-1 mt-5">
+							<button  class="btn btn-primary" onClick="addCustomEventProperty()">add</button>
+						</div>
 					</div>
-					<div class="form-group col-md-6">
-					<label for="eventPropertyValue">Event Property Value</label>
-					<input type="text" class="form-control" id="eventPropertyValue">
+					<script type="text/javascript">
+						function addCustomEventProperty() {
+							if(document.getElementById("eventPropertyName" + i).value == "" || document.getElementById("eventPropertyValue" + i).value == "") {
+								document.getElementById("message").innerHTML = `
+								<div class="alert alert-danger" role="alert">
+									Please fill out the previous custom user property first!
+								</div>
+								`;
+								return;
+							}
+							
+							i++;
+							document.getElementById("message").innerHTML = "";
+
+							document.getElementById("customEventProps").innerHTML += `
+							<div class="row" id="customEventProp` + i + `">
+								<div class="col-md-5 mt-4">
+									<label for="eventPropertyName">Event Property Name</label>
+									<input type="text" class="form-control" id="eventPropertyName` + i + `">
+								</div>
+								<div class="col-md-6 mt-4">
+									<label for="eventPropertyValue">Event Property Value</label>
+									<input type="text" class="form-control" id="eventPropertyValue` + i + `">
+								</div>
+								<div class="col-md-1 mt-5">
+									<button  class="btn btn-danger" onClick="removeEventProperty(` + i + `)">remove</button>
+								</div>
+							</div>
+							`;
+						}
+
+						function removeEventProperty(index) {
+							document.getElementById("customEventProp" + index).remove();
+							i--;
+						}
+					</script>
+				</div>
+				<div class="row">
+					<div class="col-md-12 mt-4">
+						<button  class="btn btn-primary btn-block" onClick="fireEvent()">Fire!</button>
 					</div>
 				</div>
-				<button  class="btn btn-primary" onClick="fireEvent()">Fire!</button>
 
 				<script type="text/javascript">
 					function fireEvent() {
@@ -83,98 +133,6 @@
 						clevertap.event.push(eventName, eventProps);
 					}
 				</script>
-				
-				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" class="form-control" id="name">
-				</div>
-				<div class="form-row">
-					<div class="form-group col-md-4">
-						<label for="identity">Identity</label>
-						<input type="text" class="form-control" id="identity">
-					</div>
-					<div class="form-group col-md-4">
-						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email">
-					</div>
-					<div class="form-group col-md-4">
-						<label for="phoneNumber">Phone Number</label>
-						<input type="text" class="form-control" id="phoneNumber">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="customUserPropertyName">Custom User Property Name</label>
-						<input type="text" class="form-control" id="customUserPropertyName">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="customUserPropertyValue">Custom User Property Value</label>
-						<input type="text" class="form-control" id="customUserPropertyValue">
-					</div>
-				</div>
-
-				<button  class="btn btn-primary" onClick="login()">Login</button>
-				<script type="text/javascript">
-					function login() {
-						var name = document.getElementById("name").value;
-						var identity = document.getElementById("identity").value;
-						var email = document.getElementById("email").value;
-						var phoneNumber = document.getElementById("phoneNumber").value;
-						var customUserPropertyName = document.getElementById("customUserPropertyName").value;
-						var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
-						
-						var userProps = {
-							"Site": {
-								'Name': name,
-								'Email': email,
-								'identity': identity,
-								'Phone': phoneNumber,
-								customUserPropertyName: customUserPropertyValue
-							}
-						};
-						userProps['Site'][customUserPropertyName] = customUserPropertyName;
-			
-						clevertap.onUserLogin.push(userProps);
-					}
-				</script>
-
-				<button  class="btn btn-info" onClick="pushProfile()">Push Profile</button>
-				<script type="text/javascript">
-					function pushProfile() {
-						var name = document.getElementById("name").value;
-						var identity = document.getElementById("identity").value;
-						var email = document.getElementById("email").value;
-						var phoneNumber = document.getElementById("phoneNumber").value;
-						var customUserPropertyName = document.getElementById("customUserPropertyName").value;
-						var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
-
-						var userProps = {
-							"Site": {
-								'Name': name,
-								'Email': email,
-								'identity': identity,
-								'Phone': phoneNumber,
-							}
-						};
-						userProps['Site'][customUserPropertyName] = customUserPropertyValue;
-
-						clevertap.profile.push(userProps);
-					}
-				</script>
-
-				<button  class="btn btn-secondary" onClick="optIn();return false;">Opt-In</button>
-				<script type="text/javascript">
-					function optIn() {
-						clevertap.notifications.push({
-							"titleText":'Would you like to receive Push Notifications?',
-							"bodyText":'We promise to only send you relevant content and give you updates on your transactions',
-							"okButtonText":'Sign me up!',
-							"rejectButtonText":'No thanks',
-							"okButtonColor":'#f28046',
-							"askAgainTimeInSeconds":5,
-							"serviceWorkerPath": "https://sharokhct.github.io/CT-Web-Integration/clevertap_sw.js" // path to your custom service worker file
-						});
-					}
-				</script>
-			</div>
 		</div>
 
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
