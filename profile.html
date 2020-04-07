@@ -17,6 +17,7 @@
 			clevertap.account.push({"id": "6KK-6R7-K75Z"});
 			clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
 			clevertap.privacy.push({useIP: true}); //set the flag to true, if the user agrees to share their IP data
+			clevertap.enablePersonalization = true; // enables Personalization
 			(function () {
 				 var wzrk = document.createElement('script');
 				 wzrk.type = 'text/javascript';
@@ -152,9 +153,7 @@
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
 							var phoneNumber = document.getElementById("phoneNumber").value;
-							var photo = document.getElementById("profileImage").src;
-							var customUserPropertyName = document.getElementById("customUserPropertyName").value;
-							var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
+							var photo = document.getElementById("profileImageURL").src;
 							
 							var userProps = {
 								"Site": {
@@ -167,7 +166,7 @@
 								}
 							};
 
-							for(var j = 0; j < i; j++) {
+							for(var j = 0; j <= i; j++) {
 								userProps["Site"][document.getElementById("customUserPropertyName" + j).value] = document.getElementById("customUserPropertyValue" + j).value;
 							}
 				
@@ -182,9 +181,7 @@
 							var identity = document.getElementById("identity").value;
 							var email = document.getElementById("email").value;
 							var phoneNumber = document.getElementById("phoneNumber").value;
-							var photo = document.getElementById("profileImage").src;
-							var customUserPropertyName = document.getElementById("customUserPropertyName").value;
-							var customUserPropertyValue = document.getElementById("customUserPropertyValue").value;
+							var photo = document.getElementById("profileImageURL").src;
 
 							var userProps = {
 								"Site": {
@@ -196,7 +193,7 @@
 								}
 							};
 
-							for(var j = 0; j < i; j++) {
+							for(var j = 0; j <= i; j++) {
 								userProps["Site"][document.getElementById("customUserPropertyName" + j).value] = document.getElementById("customUserPropertyValue" + j).value;
 							}
 
@@ -225,5 +222,18 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById("name").value = clevertap.profile.getAttribute("Name");
+				document.getElementById("identity").value = clevertap.profile.getAttribute("identity");
+				document.getElementById("phoneNumber").value = "+" + clevertap.profile.getAttribute("Phone");
+				document.getElementById("email").value = clevertap.profile.getAttribute("Email");
+				
+				if(clevertap.profile.getAttribute("Photo") != "") {
+					document.getElementById("profileImageURL").value = clevertap.profile.getAttribute("Photo");
+					document.getElementById("profileImage").src = clevertap.profile.getAttribute("Photo");
+				}
+			}
+		</script>
 	</body>
 <html>
