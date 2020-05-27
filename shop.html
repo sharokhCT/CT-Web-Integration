@@ -363,7 +363,7 @@
 			}
 
 			function calculateTotal() {
-				return (parseFloat(calculateSubtotal()) + parseFloat(calculateTax())).toFixed(2);
+				return parseFloat((parseFloat(calculateSubtotal()) + parseFloat(calculateTax())).toFixed(2));
 			}
 
 			function getCartKeys() {
