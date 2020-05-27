@@ -278,7 +278,7 @@
 
 					// CleverTap Charged Event
 					clevertap.event.push("Charged", {
-						"Amount": calculateTotal(),
+						"Amount": parseFloat(calculateTotal()),
 						"Payment mode": "Credit Card",
 						"Items": items
 					});
@@ -363,7 +363,7 @@
 			}
 
 			function calculateTotal() {
-				return parseFloat((parseFloat(calculateSubtotal()) + parseFloat(calculateTax())).toFixed(2));
+				return (parseFloat(calculateSubtotal()) + parseFloat(calculateTax())).toFixed(2);
 			}
 
 			function getCartKeys() {
