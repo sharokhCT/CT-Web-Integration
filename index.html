@@ -218,9 +218,10 @@
 				<script type="text/javascript">
 					function fireEvent() {
 						var eventName = document.getElementById("eventName").value;
-
-						if(document.getElementById("eventPropertyName").value === null) {
-							var eventPropertyName = document.getElementById("eventPropertyName").value;
+						var eventPropertyName = document.getElementById("eventPropertyName");
+						
+						if(eventPropertyName != null) {
+							eventPropertyName = document.getElementById("eventPropertyName").value;
 							var eventPropertyValue = document.getElementById("eventPropertyValue").value;
 							var eventProps = {};
 							eventProps[eventPropertyName] = eventPropertyValue;
