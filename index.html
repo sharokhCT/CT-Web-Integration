@@ -172,7 +172,7 @@
 							<button  class="btn btn-primary" onClick="addCustomEventProperty()">add</button>
 						</div>
 					</div>
-					<script type="text/javascript">
+					<!-- <script type="text/javascript">
 						function addCustomEventProperty() {
 							if(document.getElementById("eventPropertyName" + i).value == "" || document.getElementById("eventPropertyValue" + i).value == "") {
 								document.getElementById("message").innerHTML = `
@@ -207,7 +207,7 @@
 							document.getElementById("customEventProp" + index).remove();
 							i--;
 						}
-					</script>
+					</script> -->
 				</div>
 				<div class="row">
 					<div class="col-md-12 mt-4">
@@ -221,9 +221,13 @@
 						var eventPropertyName = document.getElementById("eventPropertyName").value;
 						var eventPropertyValue = document.getElementById("eventPropertyValue").value;
 
-						var eventProps = {};
-						eventProps[eventPropertyName] = eventPropertyValue;
-						clevertap.event.push(eventName, eventProps);
+						if(eventPropertyName) {
+							var eventProps = {};
+							eventProps[eventPropertyName] = eventPropertyValue;
+							clevertap.event.push(eventName, eventProps);
+						} else {
+							clevertap.event.push(eventName);
+						}
 					}
 				</script>
 			
